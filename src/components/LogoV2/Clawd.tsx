@@ -8,15 +8,14 @@ type Props = {
   pose?: ClawdPose;
 };
 
-// Husanai Tiger Head ASCII art (9 cols wide, 3 rows)
-// Uses Unicode block elements for a compact tiger face
+// Husanai Tiger Head — Unicode block style
+// 4 rows × 9 cols, consistent with original Clawd dimensions.
+// Uses block elements (▛▜▐▌▗▖▝▘▀▄) for reliable cross-terminal rendering.
 //
-// Row 1: ears + forehead    ╱▛█▜╲   or  ▟▛███▜▙
-// Row 2: eyes + nose        ▐◉▄◉▌   
-// Row 3: mouth/jaw           ▝▀▀▘
-//
-// The pose system is kept for compatibility but all poses
-// show the same tiger (no arm/eye animations needed).
+//  ▗▛▀▀▀▜▖     ← forehead + ears (▗▖ = ear tips)
+//  ▐●▀▄▀●▌     ← eyes (yellow ●) + nose stripe (▀▄)
+//  ▐ ╰─╯ ▌     ← mouth
+//  ▝▄▄▄▄▄▘     ← jaw
 
 export function Clawd(t0: Props) {
   const $ = _c(4);
@@ -29,14 +28,30 @@ export function Clawd(t0: Props) {
     t1 = $[1];
   }
 
-  // Simple tiger head - works in all terminals
   let t2;
   if ($[2] === Symbol.for("react.memo_cache_sentinel")) {
     t2 = (
       <Box flexDirection="column" alignItems="center">
-        <Text color="clawd_body">{"▟▛"}<Text backgroundColor="clawd_background" color="clawd_body">{"█▓█"}</Text>{"▜▙"}</Text>
-        <Text color="clawd_body">{"▐"}<Text backgroundColor="clawd_background" color="yellow">{"◉"}</Text><Text backgroundColor="clawd_background" color="clawd_body">{"▄"}</Text><Text backgroundColor="clawd_background" color="yellow">{"◉"}</Text>{"▌"}</Text>
-        <Text color="clawd_body">{" ▝"}<Text color="clawd_body">{"▀▀"}</Text>{"▘ "}</Text>
+        <Text>
+          <Text color="clawd_body">{"▗▛"}</Text>
+          <Text color="white" backgroundColor="clawd_background">{"▀▀▀"}</Text>
+          <Text color="clawd_body">{"▜▖"}</Text>
+        </Text>
+        <Text>
+          <Text color="clawd_body">{"▐"}</Text>
+          <Text color="yellow" backgroundColor="clawd_background" bold={true}>{"●"}</Text>
+          <Text color="white" backgroundColor="clawd_background">{"▀▄▀"}</Text>
+          <Text color="yellow" backgroundColor="clawd_background" bold={true}>{"●"}</Text>
+          <Text color="clawd_body">{"▌"}</Text>
+        </Text>
+        <Text>
+          <Text color="clawd_body">{"▐"}</Text>
+          <Text backgroundColor="clawd_background" color="clawd_body">{" ╰─╯ "}</Text>
+          <Text color="clawd_body">{"▌"}</Text>
+        </Text>
+        <Text>
+          <Text color="clawd_body">{"▝▄▄▄▄▄▘"}</Text>
+        </Text>
       </Box>
     );
     $[2] = t2;
