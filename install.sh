@@ -92,7 +92,7 @@ else
 fi
 
 cd "$SCRIPT_DIR"
-exec "$BUN" run --preload "$SCRIPT_DIR/preload.ts" "$SCRIPT_DIR/src/entrypoints/cli.tsx" "$@"
+exec "$BUN" run "$SCRIPT_DIR/src/entrypoints/cli.tsx" "$@"
 LAUNCHER_EOF
 
 chmod +x "$LAUNCHER"
