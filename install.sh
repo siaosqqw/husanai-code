@@ -91,7 +91,8 @@ else
     exit 1
 fi
 
-exec "$BUN" run "$SCRIPT_DIR/src/entrypoints/cli.tsx" "$@"
+cd "$SCRIPT_DIR"
+exec "$BUN" run --preload "$SCRIPT_DIR/preload.ts" "$SCRIPT_DIR/src/entrypoints/cli.tsx" "$@"
 LAUNCHER_EOF
 
 chmod +x "$LAUNCHER"
